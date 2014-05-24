@@ -1,0 +1,13 @@
+## IntelliJ IDEA
+
+.idea
+Pixel Planet.iml
+Pixel Planet.eml
+out
+src/META-INF
+
+
+## Windows
+
+Thumbs.db
+Desktop.ini
