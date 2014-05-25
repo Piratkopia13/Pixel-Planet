@@ -16,11 +16,14 @@ public class Game {
 
     private boolean isRunning = false;
 
-    private Play playState = new Play();
-    private Menu menuState = new Menu();
-    private Settings settingsState = new Settings();
+    private Play playState;
+    private Menu menuState;
+    private Settings settingsState;
 
     public static void main(String[] args){
+
+        // TODO: check opengl version, if it's over 2.0 it can run, otherwise give error message
+
         Game game = new Game();
         game.start();
     }
@@ -28,6 +31,11 @@ public class Game {
     private void start(){
         Window.createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
         Window.setFPSLimit(60);
+
+        // Init state classes
+        menuState = new Menu();
+        settingsState = new Settings();
+        playState = new Play();
 
         int frames = 0;
         long frameCounter = 0;
@@ -37,6 +45,7 @@ public class Game {
         long lastTime = Time.getTime();
         double unprocessedTime = 0;
 
+        RenderUtil.initGraphics();
 
         isRunning = true;
         while (isRunning){
