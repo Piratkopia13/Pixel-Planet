@@ -12,11 +12,11 @@ public class Main {
         CoreEngine engine = new CoreEngine();
         engine.setWindowSize(1600, 900);
         engine.setWindowTitle("Pixel Planet");
-        engine.setFPS(60);
+        CoreEngine.setFPS(60);
 
-        engine.addGameState(new Menu()).
-               addGameState(new Settings()).
-               addGameState(new Play());
+        engine.addGameState( new Menu() );
+        engine.addGameState( new Settings() );
+        engine.addGameState( new Play() );
 
         engine.setGameState(State.MENU);
 

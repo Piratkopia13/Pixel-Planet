@@ -5,6 +5,8 @@ import com.piratkopia13.pixelplanet.engine.Window;
 import com.piratkopia13.pixelplanet.shaders.BasicShader;
 import org.newdawn.slick.Color;
 
+import java.util.EventObject;
+
 import static org.lwjgl.opengl.GL11.*;
 
 public class Menu implements GameState{
@@ -13,6 +15,7 @@ public class Menu implements GameState{
     private GameFont font;
     private Image backgroundImage,
                   logoImage;
+    Button button;
 
     @Override
     public void init() {
@@ -21,6 +24,20 @@ public class Menu implements GameState{
         backgroundImage = new Image("bg.png", 0, 0, Window.getWidth(), Window.getHeight());
         logoImage = new Image("logo.png");
         logoImage.setLocation((int)(Window.getWidth()/2-logoImage.getImageWidth()/2), 30);
+        button = new Button("Hej", font, Color.green, new Vector2f(300, 300));
+
+        button.addEventListener(new ButtonListener() {
+            @Override
+            public void onClick(EventObject e) {
+                System.out.println("click!");
+            }
+
+            @Override
+            public void onHover(EventObject e) {
+
+            }
+        });
+
 
     }
 
@@ -31,7 +48,7 @@ public class Menu implements GameState{
 
     @Override
     public void update() {
-        // Test comment
+
     }
 
     @Override
@@ -44,7 +61,8 @@ public class Menu implements GameState{
 
         // HUD
         shader.unBind();
-        font.render(100, 50, "Pixel Planet!", Color.yellow);
+        font.render("Pixel Planet!", 100, 50, Color.yellow);
+        button.draw();
     }
 
     @Override

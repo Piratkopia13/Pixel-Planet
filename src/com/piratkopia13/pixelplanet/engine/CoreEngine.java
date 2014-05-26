@@ -1,14 +1,15 @@
 package com.piratkopia13.pixelplanet.engine;
 
 import com.piratkopia13.pixelplanet.states.State;
+import org.lwjgl.input.Mouse;
 
 public class CoreEngine {
 
-    private Game game;
+    private static Game game;
     private boolean windowSizeSet = false;
 
     public CoreEngine() {
-        this.game = new Game();
+        game = new Game();
     }
 
     public void start(){
@@ -29,17 +30,27 @@ public class CoreEngine {
         windowSizeSet = true;
     }
 
-    public CoreEngine addGameState(GameState state){
+    public void addGameState(GameState state){
         game.addGameState(state);
-        return this;
     }
 
     public void setGameState(State state){
         game.state = state;
     }
 
-    public void setFPS(int fps){
+    public static void setFPS(int fps){
         game.setFpsLimit(fps);
+    }
+
+    public static void addSynchronizedTask(SynchronizedTask task){
+        game.addSynchronizedTask(task);
+    }
+
+    public static int getMouseX(){
+        return Mouse.getX();
+    }
+    public static int getMouseY(){
+        return Window.getHeight()-Mouse.getY();
     }
 
 }

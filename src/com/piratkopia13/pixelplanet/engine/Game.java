@@ -19,8 +19,12 @@ public class Game {
     private boolean isRunning = false;
     private List<GameState> gameStates;
 
+    // A synchronized task is a background task that runs with the game loop
+    private List<SynchronizedTask> tasks;
+
     public Game(){
         this.gameStates = new ArrayList<GameState>();
+        this.tasks = new ArrayList<SynchronizedTask>();
     }
 
     public void setWindowTitle(String title){
@@ -82,6 +86,10 @@ public class Game {
                         break;
                     }
                 }
+                // Run all background tasks
+                for (SynchronizedTask task : tasks){
+                    task.update();
+                }
 
                 if (frameCounter >= Time.SECOND){
                     System.out.println(frames);
@@ -127,5 +135,9 @@ public class Game {
 
     public void setFpsLimit(int fpsLimit) {
         this.fpsLimit = fpsLimit;
+    }
+
+    public void addSynchronizedTask(SynchronizedTask task) {
+        this.tasks.add(task);
     }
 }

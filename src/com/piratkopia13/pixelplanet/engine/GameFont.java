@@ -33,11 +33,18 @@ public class GameFont {
         }
     }
 
-    public void render(float x, float y, String text, Color color){
+    public void render(String text, float x, float y, Color color){
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         this.font.drawString(x, y, text, color);
         glDisable(GL_BLEND);
+    }
+
+    public int getWidth(String text){
+        return font.getWidth(text);
+    }
+    public int getHeight(){
+        return font.getHeight();
     }
 
 }
