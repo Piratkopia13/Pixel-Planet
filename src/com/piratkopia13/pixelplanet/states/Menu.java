@@ -31,7 +31,7 @@ public class Menu implements GameState{
 
     @Override
     public void update() {
-
+        // Test comment
     }
 
     @Override
