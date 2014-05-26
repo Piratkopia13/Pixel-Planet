@@ -2,40 +2,47 @@ package com.piratkopia13.pixelplanet.engine;
 
 import com.piratkopia13.pixelplanet.states.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
-    public static final int    WINDOW_WIDTH = 1600;
-    public static final int    WINDOW_HEIGHT = 900;
-    public static final String WINDOW_TITLE = "Pixel Planet";
-    public static final double FRAME_CAP = 5000.0;
+    private int windowWidth;
+    private int windowHeight;
+    private String windowTitle;
+    private int fpsLimit;
 
-    public enum State{
-        MENU, PLAY, SETTINGS;
-    }
-    public static State state = State.MENU;
+    private static final double FRAME_CAP = 5000.0;
+
+    public State state;
 
     private boolean isRunning = false;
+    private List<GameState> gameStates;
 
-    private Play playState;
-    private Menu menuState;
-    private Settings settingsState;
-
-    public static void main(String[] args){
-
-        // TODO: check opengl version, if it's over 2.0 it can run, otherwise give error message
-
-        Game game = new Game();
-        game.start();
+    public Game(){
+        this.gameStates = new ArrayList<GameState>();
     }
 
-    private void start(){
-        Window.createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
-        Window.setFPSLimit(60);
+    public void setWindowTitle(String title){
+        this.windowTitle = title;
+    }
+    public void setWindowSize(int screenWidth, int screenHeight) {
+        this.windowWidth = screenWidth;
+        this.windowHeight = screenHeight;
+    }
+    public void addGameState(GameState state){
+        this.gameStates.add(state);
+    }
+
+    public void start(){
+        Window.createWindow(windowWidth, windowHeight, windowTitle);
+        if (fpsLimit > 0)
+            Window.setFPSLimit(fpsLimit);
 
         // Init state classes
-        menuState = new Menu();
-        settingsState = new Settings();
-        playState = new Play();
+        for (GameState state : gameStates){
+            state.init();
+        }
 
         int frames = 0;
         long frameCounter = 0;
@@ -68,19 +75,12 @@ public class Game {
 
                 Time.setDelta(frameTime);
 
-                switch (state){
-                    case MENU:
-                        menuState.input();
-                        menuState.update();
+                for (GameState state : gameStates){
+                    if (this.state == state.getState()){  // If current state is the same as the class's state update only that gamestate
+                        state.input();
+                        state.update();
                         break;
-                    case SETTINGS:
-                        settingsState.input();
-                        settingsState.update();
-                        break;
-                    case PLAY:
-                        playState.input();
-                        playState.update();
-                        break;
+                    }
                 }
 
                 if (frameCounter >= Time.SECOND){
@@ -116,19 +116,16 @@ public class Game {
     }
 
     private void render() {
-        switch (state){
-            case MENU:
-                menuState.render();
+        for (GameState state : gameStates){
+            if (this.state == state.getState()){  // If current state is the same as the class's state render only that one
+                state.render();
                 break;
-            case SETTINGS:
-                settingsState.render();
-                break;
-            case PLAY:
-                playState.render();
-                break;
+            }
         }
         Window.render();
     }
 
-
+    public void setFpsLimit(int fpsLimit) {
+        this.fpsLimit = fpsLimit;
+    }
 }

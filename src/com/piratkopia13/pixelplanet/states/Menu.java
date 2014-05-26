@@ -1,48 +1,55 @@
 package com.piratkopia13.pixelplanet.states;
 
-import com.piratkopia13.pixelplanet.engine.Vertex;
 import com.piratkopia13.pixelplanet.engine.*;
-import org.newdawn.slick.opengl.Texture;
+import com.piratkopia13.pixelplanet.engine.Window;
+import com.piratkopia13.pixelplanet.shaders.BasicShader;
+import org.newdawn.slick.Color;
 
-public class Menu {
+import static org.lwjgl.opengl.GL11.*;
 
-    private Texture bgTex_;
-    private Mesh bgMesh;
+public class Menu implements GameState{
+
     private Shader shader;
+    private GameFont font;
+    private Image backgroundImage,
+                  logoImage;
 
-    public Menu(){
-        bgTex_ = ResourceLoader.loadTexture("bg.png");
-        bgMesh = new Mesh();
-        shader = new Shader();
-
-        Vertex[] data = new Vertex[] { new Vertex(new Vector2f(0, 0), new Vector2f(0,0)),
-                                       new Vertex(new Vector2f(0, Window.getHeight()), new Vector2f(0,1)),
-                                       new Vertex(new Vector2f(Window.getWidth(), Window.getHeight()), new Vector2f(1,1)),
-                                       new Vertex(new Vector2f(Window.getWidth(), 0), new Vector2f(1,0)) };
-        int[] indices = new int[] { 0,1,3,
-                                    3,1,2 };
-
-        bgMesh.addVertices(data, indices);
-
-        shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
-        shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
-        shader.compileShader();
-    }
-
-    public void update(){
+    @Override
+    public void init() {
+        shader = BasicShader.getInstance();
+        font = new GameFont(30, true);
+        backgroundImage = new Image("bg.png", 0, 0, Window.getWidth(), Window.getHeight());
+        logoImage = new Image("logo.png");
+        logoImage.setLocation((int)(Window.getWidth()/2-logoImage.getImageWidth()/2), 30);
 
     }
 
+    @Override
     public void input(){
 
     }
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
     public void render(){
         RenderUtil.clearScreen();
 
-        bgTex_.bind();
         shader.bind();
-        bgMesh.draw();
+        backgroundImage.draw();
+        logoImage.draw();
+
+        // HUD
+        shader.unBind();
+        font.render(100, 50, "Pixel Planet!", Color.yellow);
+    }
+
+    @Override
+    public State getState() {
+        return State.MENU;
     }
 
 }

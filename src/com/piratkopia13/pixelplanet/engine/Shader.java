@@ -18,6 +18,9 @@ public class Shader {
     public void bind(){
         glUseProgram(program);
     }
+    public void unBind(){
+        glUseProgram(0);
+    }
 
     public void addVertexShader(String text){
         addProgram(text, GL_VERTEX_SHADER);

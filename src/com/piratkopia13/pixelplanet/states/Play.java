@@ -1,17 +1,32 @@
 package com.piratkopia13.pixelplanet.states;
 
-public class Play {
+import com.piratkopia13.pixelplanet.engine.GameState;
 
+public class Play implements GameState {
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
     public void update(){
 
     }
 
+    @Override
     public void input(){
 
     }
 
+    @Override
     public void render(){
 
+    }
+
+    @Override
+    public State getState() {
+        return State.PLAY;
     }
 
 }
