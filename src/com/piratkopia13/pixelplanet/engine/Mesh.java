@@ -3,6 +3,7 @@ package com.piratkopia13.pixelplanet.engine;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.*;
 
 public class Mesh {
 
@@ -39,5 +40,12 @@ public class Mesh {
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
+    }
+
+    public void dispose(){
+        glDeleteVertexArrays(0);
+        glDeleteVertexArrays(1);
+        glDeleteBuffers(vbo);
+        glDeleteBuffers(ibo);
     }
 }

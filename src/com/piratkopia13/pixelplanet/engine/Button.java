@@ -16,6 +16,9 @@ public class Button {
     private Vector2f position;
 
     private boolean isClicked = false;
+    private boolean isHovering = false;
+
+    private SynchronizedTask buttonUpdater;
 
     public Button(String text, GameFont font, Color color, Vector2f position){
         this.text = text;
@@ -23,11 +26,12 @@ public class Button {
         this.color = color;
         this.position = position;
 
-        CoreEngine.addSynchronizedTask( new ButtonUpdater() );
+        buttonUpdater = new ButtonUpdater();
+        CoreEngine.addSynchronizedTask( buttonUpdater );
     }
 
     public void draw(){
-        font.render(text, position.getX(), position.getY(), Color.orange);
+        font.draw(text, position.getX(), position.getY(), color);
     }
 
     // Everything below handles the button's events
@@ -39,16 +43,38 @@ public class Button {
 
             if ( (mx > position.getX() && mx < position.getX()+font.getWidth(text)) &&
                  (my > position.getY() && my < position.getY()+font.getHeight()) ){
-                fireHoverEvent();
+                if (!isHovering)
+                    fireEvent("hover");
+                isHovering = true;
 
                 if (Mouse.isButtonDown(0) && !isClicked){
-                    fireClickEvent();
+                    fireEvent("mouseDown");
                     isClicked = true;
                 }
-                if (!Mouse.isButtonDown(0) && isClicked)
+                if (!Mouse.isButtonDown(0) && isClicked) {
+                    fireEvent("mouseUp");
                     isClicked = false;
+                }
+            }else if (isHovering){
+                fireEvent("unhover");
+                isHovering = false;
             }
         }
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * Removes the button and its background task
+     */
+    public void remove(){
+        CoreEngine.removeSynchronizedTask(buttonUpdater);
     }
 
     private List _listeners = new ArrayList();
@@ -58,18 +84,25 @@ public class Button {
     public synchronized void removeEventListener(ButtonListener listener)   {
         _listeners.remove(listener);
     }
-    private synchronized void fireHoverEvent() {
+    private synchronized void fireEvent(String eventName) {
         ButtonEvent event = new ButtonEvent(this);
         Iterator i = _listeners.iterator();
         while(i.hasNext())  {
-            ((ButtonListener) i.next()).onHover(event);
-        }
-    }
-    private synchronized void fireClickEvent() {
-        ButtonEvent event = new ButtonEvent(this);
-        Iterator i = _listeners.iterator();
-        while(i.hasNext())  {
-            ((ButtonListener) i.next()).onClick(event);
+            ButtonListener bl = ((ButtonListener) i.next());
+            switch (eventName){
+                case "hover":
+                    bl.onHover(event);
+                    break;
+                case "unhover":
+                    bl.onUnHover(event);
+                    break;
+                case "mouseUp":
+                    bl.onMouseUp(event);
+                    break;
+                case "mouseDown":
+                    bl.onMouseDown(event);
+                    break;
+            }
         }
     }
 

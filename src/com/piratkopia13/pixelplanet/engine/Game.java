@@ -3,6 +3,7 @@ package com.piratkopia13.pixelplanet.engine;
 import com.piratkopia13.pixelplanet.states.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Game {
@@ -10,7 +11,6 @@ public class Game {
     private int windowWidth;
     private int windowHeight;
     private String windowTitle;
-    private int fpsLimit;
 
     private static final double FRAME_CAP = 5000.0;
 
@@ -21,10 +21,12 @@ public class Game {
 
     // A synchronized task is a background task that runs with the game loop
     private List<SynchronizedTask> tasks;
+    private List<SynchronizedTask> tasksToRemove;
 
     public Game(){
-        this.gameStates = new ArrayList<GameState>();
-        this.tasks = new ArrayList<SynchronizedTask>();
+        this.gameStates = new ArrayList<>();
+        this.tasks = new ArrayList<>();
+        this.tasksToRemove = new ArrayList<>();
     }
 
     public void setWindowTitle(String title){
@@ -40,8 +42,6 @@ public class Game {
 
     public void start(){
         Window.createWindow(windowWidth, windowHeight, windowTitle);
-        if (fpsLimit > 0)
-            Window.setFPSLimit(fpsLimit);
 
         // Init state classes
         for (GameState state : gameStates){
@@ -86,8 +86,15 @@ public class Game {
                         break;
                     }
                 }
+
                 // Run all background tasks
-                for (SynchronizedTask task : tasks){
+                Iterator<SynchronizedTask> iterator = tasks.iterator();
+                while (iterator.hasNext()) {
+                    SynchronizedTask task = iterator.next();
+                    if (tasksToRemove.contains(task)){
+                        iterator.remove();
+                        tasksToRemove.remove(task);
+                    }
                     task.update();
                 }
 
@@ -119,13 +126,13 @@ public class Game {
         Window.dispose();
     }
 
-    private void stop(){
+    public void stop(){
         isRunning = false;
     }
 
     private void render() {
         for (GameState state : gameStates){
-            if (this.state == state.getState()){  // If current state is the same as the class's state render only that one
+            if (this.state == state.getState()){  // If current state is the same as the class's state draw only that one
                 state.render();
                 break;
             }
@@ -133,11 +140,10 @@ public class Game {
         Window.render();
     }
 
-    public void setFpsLimit(int fpsLimit) {
-        this.fpsLimit = fpsLimit;
-    }
-
     public void addSynchronizedTask(SynchronizedTask task) {
         this.tasks.add(task);
+    }
+    public void removeSynchronizedTask(SynchronizedTask task) {
+        this.tasksToRemove.add(task);
     }
 }

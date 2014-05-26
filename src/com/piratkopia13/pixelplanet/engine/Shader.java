@@ -62,4 +62,8 @@ public class Shader {
 
         glAttachShader(program, shader);
     }
+
+    public void dispose(){
+
+    }
 }

@@ -27,13 +27,13 @@ public class GameFont {
             Font awtFont = Font.createFont(Font.TRUETYPE_FONT, inputStream);
             awtFont = awtFont.deriveFont(size);
             this.font = new TrueTypeFont(awtFont, antiAlias);
-
+            inputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void render(String text, float x, float y, Color color){
+    public void draw(String text, float x, float y, Color color){
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         this.font.drawString(x, y, text, color);

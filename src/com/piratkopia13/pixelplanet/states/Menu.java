@@ -5,9 +5,9 @@ import com.piratkopia13.pixelplanet.engine.Window;
 import com.piratkopia13.pixelplanet.shaders.BasicShader;
 import org.newdawn.slick.Color;
 
+import java.util.ArrayList;
 import java.util.EventObject;
-
-import static org.lwjgl.opengl.GL11.*;
+import java.util.List;
 
 public class Menu implements GameState{
 
@@ -15,7 +15,9 @@ public class Menu implements GameState{
     private GameFont font;
     private Image backgroundImage,
                   logoImage;
-    Button button;
+    List<Button> buttons;
+    private Color defaultColor;
+    private Color hoverColor;
 
     @Override
     public void init() {
@@ -23,22 +25,20 @@ public class Menu implements GameState{
         font = new GameFont(30, true);
         backgroundImage = new Image("bg.png", 0, 0, Window.getWidth(), Window.getHeight());
         logoImage = new Image("logo.png");
-        logoImage.setLocation((int)(Window.getWidth()/2-logoImage.getImageWidth()/2), 30);
-        button = new Button("Hej", font, Color.green, new Vector2f(300, 300));
+        logoImage.setLocation((int)(Window.getWidth()/2-logoImage.getImageWidth()/2), 100);
+        buttons = new ArrayList<>();
+        defaultColor = new Color(39, 242, 242);
+        hoverColor = new Color(27, 133, 133);
 
-        button.addEventListener(new ButtonListener() {
-            @Override
-            public void onClick(EventObject e) {
-                System.out.println("click!");
-            }
-
-            @Override
-            public void onHover(EventObject e) {
-
-            }
-        });
-
-
+        String[] buttonNames = { "Play", "Settings", "Exit" };
+        int startY = 370;
+        for (int i = 0; i < buttonNames.length; i++) {
+            String name = buttonNames[i];
+            buttons.add( new Button(name, font, defaultColor, new Vector2f(Window.getWidth()/2-font.getWidth(name)/2, startY + (font.getHeight()+20)*i )) );
+        }
+        for (Button button : buttons){
+            button.addEventListener(buttonListener);
+        }
     }
 
     @Override
@@ -61,9 +61,64 @@ public class Menu implements GameState{
 
         // HUD
         shader.unBind();
-        font.render("Pixel Planet!", 100, 50, Color.yellow);
-        button.draw();
+        for (Button button : buttons){
+            button.draw();
+        }
+
+        // Draw version
+        RenderUtil.drawGameVersion(font);
     }
+
+    private void cleanUp() {
+        backgroundImage.dispose();
+        logoImage.dispose();
+        shader.dispose();
+        for (Button button : buttons){
+            button.remove();
+        }
+    }
+
+    private ButtonListener buttonListener = new ButtonListener() {
+        @Override
+        public void onMouseDown(EventObject e) {
+            Button src = (Button)e.getSource();
+            System.out.println("mouse down");
+        }
+
+        @Override
+        public void onMouseUp(EventObject e) {
+            Button src = (Button)e.getSource();
+            switch (src.getText()) {
+                case "Exit":
+                    cleanUp();
+                    CoreEngine.stop();
+                    break;
+                case "Settings":
+                    cleanUp();
+                    CoreEngine.setState(State.SETTINGS);
+                    break;
+                case "Play":
+                    cleanUp();
+                    CoreEngine.setState(State.PLAY);
+                    break;
+            }
+            System.out.println("mouse up");
+        }
+
+        @Override
+        public void onHover(EventObject e) {
+            Button src = (Button)e.getSource();
+            src.setColor(hoverColor);
+            System.out.println("hover");
+        }
+
+        @Override
+        public void onUnHover(EventObject e) {
+            Button src = (Button)e.getSource();
+            src.setColor(defaultColor);
+            System.out.println("unhover");
+        }
+    };
 
     @Override
     public State getState() {

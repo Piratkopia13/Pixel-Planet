@@ -21,6 +21,10 @@ public class CoreEngine {
         }
     }
 
+    public static void stop(){
+        game.stop();
+    }
+
     public void setWindowTitle(String title){
         game.setWindowTitle(title);
     }
@@ -39,11 +43,17 @@ public class CoreEngine {
     }
 
     public static void setFPS(int fps){
-        game.setFpsLimit(fps);
+        Window.setFPSLimit(fps);
+    }
+    public static void setState(State state){
+        game.state = state;
     }
 
     public static void addSynchronizedTask(SynchronizedTask task){
         game.addSynchronizedTask(task);
+    }
+    public static void removeSynchronizedTask(SynchronizedTask task){
+        game.removeSynchronizedTask(task);
     }
 
     public static int getMouseX(){

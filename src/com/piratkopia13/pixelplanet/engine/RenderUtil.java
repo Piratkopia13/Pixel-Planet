@@ -1,5 +1,8 @@
 package com.piratkopia13.pixelplanet.engine;
 
+import com.piratkopia13.pixelplanet.Version;
+import org.newdawn.slick.Color;
+
 import static org.lwjgl.opengl.GL11.*;
 
 public class RenderUtil {
@@ -28,6 +31,10 @@ public class RenderUtil {
 
     public static String getOpenGLVersion(){
         return glGetString(GL_VERSION);
+    }
+
+    public static void drawGameVersion(GameFont font){
+        font.draw("v" + Version.VERSION, 0, Window.getHeight()-font.getHeight(), Color.white);
     }
 
 }

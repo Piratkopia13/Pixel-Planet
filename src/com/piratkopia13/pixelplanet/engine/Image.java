@@ -94,6 +94,11 @@ public class Image {
         glDisable(GL_BLEND);
     }
 
+    public void dispose(){
+        tex_.release();
+        mesh.dispose();
+    }
+
     public float getWidth(){
         return tex_.getWidth();
     }
