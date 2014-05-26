@@ -1,5 +1,6 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.core;
 
+import com.piratkopia13.pixelplanet.engine.rendering.GameFont;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 

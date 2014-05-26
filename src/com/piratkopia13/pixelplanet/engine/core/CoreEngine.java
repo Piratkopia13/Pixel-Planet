@@ -1,7 +1,9 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.core;
 
+import com.piratkopia13.pixelplanet.engine.rendering.Window;
 import com.piratkopia13.pixelplanet.states.State;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 
 public class CoreEngine {
 
@@ -47,6 +49,9 @@ public class CoreEngine {
     }
     public static void setState(State state){
         game.state = state;
+    }
+    public static void setVsyncEnabled(boolean enable){
+        Display.setVSyncEnabled(enable);
     }
 
     public static void addSynchronizedTask(SynchronizedTask task){

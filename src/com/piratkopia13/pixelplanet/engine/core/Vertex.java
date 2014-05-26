@@ -1,4 +1,4 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.core;
 
 public class Vertex {
     public static final int SIZE = 4;

@@ -1,4 +1,4 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.core;
 
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;

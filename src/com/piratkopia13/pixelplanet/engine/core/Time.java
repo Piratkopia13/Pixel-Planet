@@ -1,4 +1,4 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.core;
 
 public class Time {
 

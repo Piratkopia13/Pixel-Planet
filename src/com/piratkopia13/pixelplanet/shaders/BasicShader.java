@@ -1,7 +1,7 @@
 package com.piratkopia13.pixelplanet.shaders;
 
-import com.piratkopia13.pixelplanet.engine.GameResourceLoader;
-import com.piratkopia13.pixelplanet.engine.Shader;
+import com.piratkopia13.pixelplanet.engine.core.GameResourceLoader;
+import com.piratkopia13.pixelplanet.engine.rendering.Shader;
 
 public class BasicShader {
 

@@ -1,4 +1,4 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.rendering;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;

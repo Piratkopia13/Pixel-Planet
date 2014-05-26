@@ -1,6 +1,6 @@
 package com.piratkopia13.pixelplanet.states;
 
-import com.piratkopia13.pixelplanet.engine.GameState;
+import com.piratkopia13.pixelplanet.engine.core.GameState;
 
 public class Settings implements GameState{
 
@@ -21,6 +21,11 @@ public class Settings implements GameState{
 
     @Override
     public void render(){
+
+    }
+
+    @Override
+    public void cleanUp() {
 
     }
 

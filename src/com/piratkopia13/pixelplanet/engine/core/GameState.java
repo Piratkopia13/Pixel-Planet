@@ -1,4 +1,4 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.core;
 
 import com.piratkopia13.pixelplanet.states.State;
 
@@ -8,6 +8,7 @@ public interface GameState {
     void input();
     void update();
     void render();
+    void cleanUp();
 
     State getState();
 

@@ -1,4 +1,4 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.rendering;
 
 import com.piratkopia13.pixelplanet.Version;
 import org.newdawn.slick.Color;
@@ -19,7 +19,7 @@ public class RenderUtil {
     }
 
     public static void initGraphics(){
-        glClearColor(0, 0, 0, 1);
+        glClearColor(0, 1, 1, 1);
 
         glMatrixMode(GL_PROJECTION);
         glOrtho(0, Window.getWidth(), Window.getHeight(), 0, 1, -1);

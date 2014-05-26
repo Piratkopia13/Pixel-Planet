@@ -1,10 +1,11 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.rendering;
 
 import static org.lwjgl.opengl.GL20.*;
 
 public class Shader {
 
     private int program;
+    private int shader;
 
     public Shader() {
         this.program = glCreateProgram();
@@ -45,7 +46,7 @@ public class Shader {
     }
 
     private void addProgram(String text, int type){
-        int shader = glCreateShader(type);
+        shader = glCreateShader(type);
 
         if (shader == 0){
             System.err.println("Shader creation failed: could not find valid memory location when adding shader");
@@ -64,6 +65,7 @@ public class Shader {
     }
 
     public void dispose(){
-
+        glDeleteProgram(program);
+        glDeleteShader(shader);
     }
 }

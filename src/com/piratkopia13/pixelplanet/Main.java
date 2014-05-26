@@ -1,6 +1,6 @@
 package com.piratkopia13.pixelplanet;
 
-import com.piratkopia13.pixelplanet.engine.CoreEngine;
+import com.piratkopia13.pixelplanet.engine.core.CoreEngine;
 import com.piratkopia13.pixelplanet.states.*;
 
 public class Main {
@@ -13,12 +13,13 @@ public class Main {
         engine.setWindowSize(1600, 900);
         engine.setWindowTitle("Pixel Planet");
         CoreEngine.setFPS(60);
+        CoreEngine.setVsyncEnabled(true);
 
         engine.addGameState( new Menu() );
         engine.addGameState( new Settings() );
         engine.addGameState( new Play() );
 
-        engine.setGameState(State.MENU);
+        engine.setGameState(State.PLAY);
 
         engine.start();
     }

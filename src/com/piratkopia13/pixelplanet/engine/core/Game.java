@@ -1,5 +1,7 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.core;
 
+import com.piratkopia13.pixelplanet.engine.rendering.RenderUtil;
+import com.piratkopia13.pixelplanet.engine.rendering.Window;
 import com.piratkopia13.pixelplanet.states.*;
 
 import java.util.ArrayList;
@@ -91,7 +93,7 @@ public class Game {
                 Iterator<SynchronizedTask> iterator = tasks.iterator();
                 while (iterator.hasNext()) {
                     SynchronizedTask task = iterator.next();
-                    if (tasksToRemove.contains(task)){
+                    if (tasksToRemove.contains(task)){ // Remove task if flagged
                         iterator.remove();
                         tasksToRemove.remove(task);
                     }
@@ -119,6 +121,10 @@ public class Game {
 
         }
 
+        // Clean everything up before closing
+        for (GameState state : gameStates){
+            state.cleanUp();
+        }
         cleanUp();
     }
 

@@ -1,5 +1,7 @@
-package com.piratkopia13.pixelplanet.engine;
+package com.piratkopia13.pixelplanet.engine.rendering;
 
+import com.piratkopia13.pixelplanet.engine.core.GameResourceLoader;
+import com.piratkopia13.pixelplanet.engine.core.Vertex;
 import org.newdawn.slick.opengl.Texture;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -82,6 +84,8 @@ public class Image {
 
     private void loadTexture(String filename){
         this.tex_ = GameResourceLoader.loadTexture(filename);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     }
 
     /**

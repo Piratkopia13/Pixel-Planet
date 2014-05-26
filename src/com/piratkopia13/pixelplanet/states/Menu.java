@@ -1,7 +1,7 @@
 package com.piratkopia13.pixelplanet.states;
 
-import com.piratkopia13.pixelplanet.engine.*;
-import com.piratkopia13.pixelplanet.engine.Window;
+import com.piratkopia13.pixelplanet.engine.core.*;
+import com.piratkopia13.pixelplanet.engine.rendering.*;
 import com.piratkopia13.pixelplanet.shaders.BasicShader;
 import org.newdawn.slick.Color;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 
-public class Menu implements GameState{
+public class Menu implements GameState {
 
     private Shader shader;
     private GameFont font;
@@ -34,7 +34,8 @@ public class Menu implements GameState{
         int startY = 370;
         for (int i = 0; i < buttonNames.length; i++) {
             String name = buttonNames[i];
-            buttons.add( new Button(name, font, defaultColor, new Vector2f(Window.getWidth()/2-font.getWidth(name)/2, startY + (font.getHeight()+20)*i )) );
+            buttons.add( new Button(name, font, defaultColor,
+                         new Vector2f(Window.getWidth()/2-font.getWidth(name)/2, startY + (font.getHeight()+20)*i )) );
         }
         for (Button button : buttons){
             button.addEventListener(buttonListener);
@@ -69,7 +70,8 @@ public class Menu implements GameState{
         RenderUtil.drawGameVersion(font);
     }
 
-    private void cleanUp() {
+    @Override
+    public void cleanUp() {
         backgroundImage.dispose();
         logoImage.dispose();
         shader.dispose();
