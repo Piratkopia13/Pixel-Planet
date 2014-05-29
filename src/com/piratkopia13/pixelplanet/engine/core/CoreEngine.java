@@ -1,5 +1,6 @@
 package com.piratkopia13.pixelplanet.engine.core;
 
+import com.piratkopia13.pixelplanet.engine.rendering.Camera;
 import com.piratkopia13.pixelplanet.engine.rendering.Window;
 import com.piratkopia13.pixelplanet.states.State;
 import org.lwjgl.input.Mouse;
@@ -9,6 +10,7 @@ public class CoreEngine {
 
     private static Game game;
     private boolean windowSizeSet = false;
+    private static Camera gameCamera;
 
     public CoreEngine() {
         game = new Game();
@@ -68,4 +70,11 @@ public class CoreEngine {
         return Window.getHeight()-Mouse.getY();
     }
 
+    public static Camera getGameCamera() {
+        return gameCamera;
+    }
+
+    public static void setGameCamera(Camera gameCamera) {
+        CoreEngine.gameCamera = gameCamera;
+    }
 }

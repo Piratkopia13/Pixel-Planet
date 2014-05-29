@@ -19,14 +19,17 @@ public class RenderUtil {
     }
 
     public static void initGraphics(){
-        glClearColor(0, 1, 1, 1);
+        glClearColor(0, 0, 1, 1);
 
         glMatrixMode(GL_PROJECTION);
         glOrtho(0, Window.getWidth(), Window.getHeight(), 0, 1, -1);
 
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
         glCullFace(GL_BACK);
         glEnable(GL_CULL_FACE);
         glEnable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
     }
 
     public static String getOpenGLVersion(){

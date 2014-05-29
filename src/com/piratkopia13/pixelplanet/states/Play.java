@@ -1,6 +1,7 @@
 package com.piratkopia13.pixelplanet.states;
 
 import com.piratkopia13.pixelplanet.Player;
+import com.piratkopia13.pixelplanet.engine.core.CoreEngine;
 import com.piratkopia13.pixelplanet.engine.core.GameState;
 import com.piratkopia13.pixelplanet.engine.core.Vector2f;
 import com.piratkopia13.pixelplanet.engine.rendering.Camera;
@@ -25,10 +26,12 @@ public class Play implements GameState {
     @Override
     public void init() {
         camera = new Camera(0, 0);
+        CoreEngine.setGameCamera(camera);
         player = new Player();
         player.setShipIcon("axiom.png");
         player.setPosition(new Vector2f(-player.getWidth() / 2, -player.getHeight() / 2));  // Set the position to the ship's center
         player.follow(camera);
+        player.pointTowardsMouse(true);
         box = new Shape();
         box.setAsSquare(100, 100, 200, 200);
         shader = BasicShader.getInstance();
@@ -64,8 +67,10 @@ public class Play implements GameState {
 
         glPushMatrix();
         camera.applyTransform();
-        player.draw();
+        BasicShader.setColor(1, 0, 0, 1);
         box.draw();
+        BasicShader.resetColor();
+        player.draw();
 
         glPopMatrix();
 
