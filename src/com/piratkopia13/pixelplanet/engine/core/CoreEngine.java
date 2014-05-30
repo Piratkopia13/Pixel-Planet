@@ -11,6 +11,7 @@ public class CoreEngine {
     private static Game game;
     private boolean windowSizeSet = false;
     private static Camera gameCamera;
+    private static int fps;
 
     public CoreEngine() {
         game = new Game();
@@ -76,5 +77,12 @@ public class CoreEngine {
 
     public static void setGameCamera(Camera gameCamera) {
         CoreEngine.gameCamera = gameCamera;
+    }
+
+    public static int getFPS() {
+        return fps;
+    }
+    public static void setCurrentFPS(int fps) {
+        CoreEngine.fps = fps;
     }
 }

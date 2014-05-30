@@ -6,8 +6,8 @@ public class Time {
 
     private static double delta;
 
-    public static long getTime(){
-        return System.nanoTime();
+    public static double getTime(){
+        return (double)System.nanoTime();
     }
 
     public static double getDelta(){

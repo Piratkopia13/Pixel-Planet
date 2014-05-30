@@ -3,6 +3,7 @@ package com.piratkopia13.pixelplanet.engine.rendering;
 import com.piratkopia13.pixelplanet.engine.core.Util;
 import com.piratkopia13.pixelplanet.engine.core.Vertex;
 import org.lwjgl.opengl.GL15;
+import org.newdawn.slick.opengl.Texture;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
@@ -34,8 +35,6 @@ public class Mesh {
     public void draw(){
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
-
-        glColor3f(1, 0, 0);
 
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glVertexAttribPointer(0, 2, GL_FLOAT, false, Vertex.SIZE * 4, 0);

@@ -19,7 +19,7 @@ public class RenderUtil {
     }
 
     public static void initGraphics(){
-        glClearColor(0, 0, 1, 1);
+        glClearColor(0, 0.2f, 0.2f, 1);
 
         glMatrixMode(GL_PROJECTION);
         glOrtho(0, Window.getWidth(), Window.getHeight(), 0, 1, -1);

@@ -14,8 +14,6 @@ public class Game {
     private int windowHeight;
     private String windowTitle;
 
-    private static final double FRAME_CAP = 5000.0;
-
     public State state;
 
     private boolean isRunning = false;
@@ -50,68 +48,54 @@ public class Game {
             state.init();
         }
 
+        RenderUtil.initGraphics();
+
+        double frameTime = 1.0/5000.0;
+
         int frames = 0;
         long frameCounter = 0;
 
-        final double frameTime = 1.0 / FRAME_CAP;
-
-        long lastTime = Time.getTime();
+        double lastTime = Time.getTime();
         double unprocessedTime = 0;
-
-        RenderUtil.initGraphics();
 
         isRunning = true;
         while (isRunning){
+
             boolean render = false;
 
-            long startTime = Time.getTime();
-            long passedTime = startTime - lastTime;
+            double startTime = Time.getTime();
+            double passedTime = startTime - lastTime;
             lastTime = startTime;
 
-            unprocessedTime += passedTime / (double)Time.SECOND;
+            unprocessedTime += passedTime / Time.SECOND;
             frameCounter += passedTime;
 
-            while (unprocessedTime > frameTime){
+            while(unprocessedTime > frameTime)
+            {
                 render = true;
 
                 unprocessedTime -= frameTime;
 
-                if (Window.isCloseRequested())
+                if(Window.isCloseRequested())
                     stop();
 
-                Time.setDelta(frameTime);
+                Time.setDelta(passedTime*100 / Time.SECOND); // Wierd delta calculation, don't ask me what it does..
 
-                for (GameState state : gameStates){
-                    if (this.state == state.getState()){  // If current state is the same as the class's state update only that gamestate
-                        state.input();
-                        state.update();
-                        break;
-                    }
-                }
+                // old update location
 
-                // Run all background tasks
-                Iterator<SynchronizedTask> iterator = tasks.iterator();
-                while (iterator.hasNext()) {
-                    SynchronizedTask task = iterator.next();
-                    if (tasksToRemove.contains(task)){ // Remove task if flagged
-                        iterator.remove();
-                        tasksToRemove.remove(task);
-                    }
-                    task.update();
-                }
-
-                if (frameCounter >= Time.SECOND){
-                    System.out.println(frames);
+                if(frameCounter >= Time.SECOND)
+                {
+                    CoreEngine.setCurrentFPS(frames);
                     frames = 0;
                     frameCounter = 0;
                 }
             }
 
             if (render){
+                update();
                 render();
                 frames++;
-            }
-            else{
+            }else{
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
@@ -144,6 +128,26 @@ public class Game {
             }
         }
         Window.render();
+    }
+    private void update() {
+        for (GameState state : gameStates){
+            if (this.state == state.getState()){  // If current state is the same as the class's state update only that gamestate
+                state.input();
+                state.update();
+                break;
+            }
+        }
+
+        // Run all background tasks
+        Iterator<SynchronizedTask> iterator = tasks.iterator();
+        while (iterator.hasNext()) {
+            SynchronizedTask task = iterator.next();
+            if (tasksToRemove.contains(task)){ // Remove task if flagged
+                iterator.remove();
+                tasksToRemove.remove(task);
+            }
+            task.update();
+        }
     }
 
     public void addSynchronizedTask(SynchronizedTask task) {

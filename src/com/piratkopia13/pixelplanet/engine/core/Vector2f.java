@@ -26,6 +26,9 @@ public class Vector2f {
     public Vector2f divide(int denominator){
         return new Vector2f(x/denominator, y/denominator);
     }
+    public Vector2f mul(float factor){
+        return new Vector2f(x*factor, y*factor);
+    }
 
     public Vector2f normalize(){
         return new Vector2f(x/ length, y/ length);
@@ -54,9 +57,12 @@ public class Vector2f {
     public void addToX(float x){
         this.x += x;
     }
-
     public void addToY(float y){
         this.y += y ;
+    }
+    public void addTo(Vector2f toAdd){
+        this.x = x+toAdd.x;
+        this.y = y+toAdd.y;
     }
 
     public Vector2f inverted(){
