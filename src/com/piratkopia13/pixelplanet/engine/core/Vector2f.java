@@ -29,6 +29,9 @@ public class Vector2f {
     public Vector2f mul(float factor){
         return new Vector2f(x*factor, y*factor);
     }
+    public Vector2f mul(Vector2f factor){
+        return new Vector2f(x*factor.getX(), y*factor.getY());
+    }
 
     public Vector2f normalize(){
         return new Vector2f(x/ length, y/ length);
@@ -41,16 +44,20 @@ public class Vector2f {
     public float getX() {
         return x;
     }
-
     public void setX(float x) {
         this.x = x;
     }
-
     public float getY() {
         return y;
     }
-
     public void setY(float y) {
+        this.y = y;
+    }
+    public void set(Vector2f vec){
+        this.set(vec.x, vec.y);
+    }
+    public void set(float x, float y){
+        this.x = x;
         this.y = y;
     }
 

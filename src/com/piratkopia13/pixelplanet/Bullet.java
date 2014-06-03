@@ -9,19 +9,24 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Bullet {
 
+    private final int TICKS_ALIVE = 600; // After these ticks the bullet we be forcedremoved
+
     private Vector2f position;
     private Vector2f trajectory;
-    private float rotation;
     private float speed;
+    private float rotation;
     private Mesh mesh;
     private Vector2f size;
+    private Vector2f extraVelocity;
     private boolean isDead = false;
+    private int currentTick;
 
-    public Bullet(Vector2f startPos, float angle, float speed){
+    public Bullet(Vector2f startPos, float angle, float speed, Vector2f extraVelocity){
         this.position = startPos;
         this.trajectory = new Vector2f( (float) Math.cos(Math.toRadians(angle)), (float) Math.sin(Math.toRadians(angle)) );
         this.rotation = angle;
         this.speed = speed;
+        this.extraVelocity = extraVelocity;
         this.size = new Vector2f(10,5);
 
         mesh = new Mesh();
@@ -35,7 +40,10 @@ public class Bullet {
     }
 
     public void update(){
-        position = position.add(trajectory.mul(speed));
+        position = position.add( trajectory.mul(speed*1.0f).add(extraVelocity) );
+        if (currentTick >= TICKS_ALIVE)
+            markAsDead();
+        currentTick++;
     }
 
     public void draw(){

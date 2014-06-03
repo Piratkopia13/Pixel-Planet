@@ -79,6 +79,24 @@ public class GameMap {
         return false;
     }
 
+    /**
+     * @param points List of points to test for collision
+     * @return Point of collision
+     */
+    public Vector2f collidesWith(Vector2f[] points){
+        for (MapBlock block : blocks){
+            if (block.type == BlockType.WALL || block.type == BlockType.STONE) {
+                for (Vector2f point : points) {
+                    if (Shape.rectangleCollision(new Vector2f(block.x * blockSize, block.y * blockSize), new Vector2f(blockSize, blockSize), point)) {
+//                        return new Vector2f( Math.abs(point.getX()-block.x * blockSize), Math.abs(point.getY()-block.y * blockSize) );
+                        return new Vector2f(block.x * blockSize, block.y * blockSize);
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     public void load(String filename){
         BufferedReader br;
         BlockType type;
@@ -124,6 +142,10 @@ public class GameMap {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getBlockSize() {
+        return blockSize;
     }
 
     public List<MapBlock> getBlocks() {

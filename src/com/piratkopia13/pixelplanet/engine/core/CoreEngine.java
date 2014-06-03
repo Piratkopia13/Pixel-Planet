@@ -44,6 +44,7 @@ public class CoreEngine {
     }
 
     public void setGameState(State state){
+//        game.init(state);
         game.state = state;
     }
 

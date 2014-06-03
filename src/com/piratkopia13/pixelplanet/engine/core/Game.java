@@ -50,7 +50,7 @@ public class Game {
 
         RenderUtil.initGraphics();
 
-        double frameTime = 1.0/5000.0;
+        double frameTime = 1.0/10000.0;
 
         int frames = 0;
         long frameCounter = 0;
@@ -79,7 +79,8 @@ public class Game {
                 if(Window.isCloseRequested())
                     stop();
 
-                Time.setDelta(passedTime*100 / Time.SECOND); // Wierd delta calculation, don't ask me what it does..
+//                Time.setDelta(passedTime*100 / Time.SECOND); // Wierd delta calculation, don't ask me what it does..
+                Time.setDelta(100/60f);   // temporary
 
                 // old update location
 
@@ -92,6 +93,7 @@ public class Game {
             }
 
             if (render){
+                Time.setFrameNum(frames);
                 update();
                 render();
                 frames++;
@@ -147,6 +149,14 @@ public class Game {
                 tasksToRemove.remove(task);
             }
             task.update();
+        }
+    }
+    public void init(State state){
+        for (GameState st : gameStates){
+            if (state == st.getState()){
+                st.init();
+                break;
+            }
         }
     }
 
