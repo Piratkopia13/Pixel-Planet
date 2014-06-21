@@ -1,6 +1,6 @@
 package com.piratkopia13.pixelplanet;
 
-import com.piratkopia13.pixelplanet.engine.core.CoreEngine;
+import com.piratkopia13.pixelplanet.engine.core.Game;
 import com.piratkopia13.pixelplanet.states.*;
 
 public class Main {
@@ -9,19 +9,21 @@ public class Main {
 
         // TODO: check opengl version, if it's over x it can run, otherwise give error message
 
-        CoreEngine engine = new CoreEngine();
-        engine.setWindowSize(1600, 900);
-        engine.setWindowTitle("Pixel Planet");
+        Game game = new Game();
+        game.setWindowSize(1600, 900);
+        game.setWindowTitle("Pixel Planet");
 //        CoreEngine.setFPS(200);
-        CoreEngine.setVsyncEnabled(true);
+        Game.setVsyncEnabled(true);
 
-        engine.addGameState( new Menu() );
-        engine.addGameState( new Settings() );
-        engine.addGameState( new Play() );
+        Game.joinServer("127.0.0.1");
 
-        engine.setGameState(State.PLAY);
+        game.addGameState( new Menu() );
+        game.addGameState( new Settings() );
+        game.addGameState( new Play() );
 
-        engine.start();
+        game.setGameState(State.PLAY);
+
+        game.start();
 
 
     }

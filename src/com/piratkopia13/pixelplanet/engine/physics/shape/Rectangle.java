@@ -13,6 +13,9 @@ public class Rectangle extends Shape {
         this.position = new Vector2f(x, y);
         this.size = new Vector2f(width, height);
     }
+    public Rectangle(Vector2f pos, Vector2f size){
+        this(pos.getX(), pos.getY(), size.getX(), size.getY());
+    }
 
     @Override
     public void setRenderable() {
@@ -31,5 +34,31 @@ public class Rectangle extends Shape {
         int[] indices = new int[] { 0,1,3,
                                     3,1,2 };
         mesh.addVertices(vertices, indices);
+    }
+
+    @Override
+    public void move(Vector2f pos) {
+        this.position.set(pos);
+    }
+
+    @Override
+    public void add(float x, float y){
+        this.position.addToX(x);
+        this.position.addToY(y);
+    }
+
+    public boolean intersects(Vector2f pos, Vector2f size){
+        return (intersects(pos) || intersects(new Vector2f(pos.getX()+size.getY(), pos.getY())) ||
+                intersects(new Vector2f(pos.getX(), pos.getY()+size.getY())) ||
+                intersects(pos.add(size)));
+    }
+    public boolean intersects(Vector2f point){
+        return ( ( point.getX() > position.getX() && point.getX() < position.getX()+size.getX()) &&
+                ( point.getY() > position.getY() && point.getY() < position.getY()+size.getY() ) );
+    }
+
+    @Override
+    public Vector2f getPosition() {
+        return position;
     }
 }

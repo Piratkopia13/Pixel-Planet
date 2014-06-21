@@ -93,15 +93,15 @@ public class Menu implements GameState {
             switch (src.getText()) {
                 case "Exit":
                     cleanUp();
-                    CoreEngine.stop();
+                    Game.stop();
                     break;
                 case "Settings":
                     cleanUp();
-                    CoreEngine.setState(State.SETTINGS);
+                    Game.setState(State.SETTINGS);
                     break;
                 case "Play":
                     cleanUp();
-                    CoreEngine.setState(State.PLAY);
+                    Game.setState(State.PLAY);
                     break;
             }
             System.out.println("mouse up");

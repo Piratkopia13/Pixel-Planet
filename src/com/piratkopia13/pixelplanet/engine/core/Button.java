@@ -28,7 +28,7 @@ public class Button {
         this.position = position;
 
         buttonUpdater = new ButtonUpdater();
-        CoreEngine.addSynchronizedTask( buttonUpdater );
+        Game.addSynchronizedTask(buttonUpdater);
     }
 
     public void draw(){
@@ -39,8 +39,8 @@ public class Button {
     private class ButtonUpdater implements SynchronizedTask{
         @Override
         public void update() {
-            int mx = CoreEngine.getMouseX(),
-                my = CoreEngine.getMouseY();
+            int mx = Game.getMouseX(),
+                my = Game.getMouseY();
 
             if ( (mx > position.getX() && mx < position.getX()+font.getWidth(text)) &&
                  (my > position.getY() && my < position.getY()+font.getHeight()) ){
@@ -75,7 +75,7 @@ public class Button {
      * Removes the button and its background task
      */
     public void remove(){
-        CoreEngine.removeSynchronizedTask(buttonUpdater);
+        Game.removeSynchronizedTask(buttonUpdater);
     }
 
     private List _listeners = new ArrayList();

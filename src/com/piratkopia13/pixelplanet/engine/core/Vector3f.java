@@ -1,9 +1,9 @@
 package com.piratkopia13.pixelplanet.engine.core;
 
 public class Vector3f {
-    private float x;
-    private float y;
-    private float z;
+    public float x;
+    public float y;
+    public float z;
 
     public Vector3f(float x, float y, float z){
         this.set(x, y, z);
@@ -25,5 +25,9 @@ public class Vector3f {
 
     public float getZ() {
         return z;
+    }
+
+    public String toString(){
+        return "( " + x + ", " + y + ", " + z + " )";
     }
 }

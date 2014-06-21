@@ -4,6 +4,7 @@ import com.piratkopia13.pixelplanet.Version;
 import org.newdawn.slick.Color;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.ARBTextureRectangle.GL_TEXTURE_RECTANGLE_ARB;
 
 public class RenderUtil {
 
@@ -27,8 +28,9 @@ public class RenderUtil {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         glCullFace(GL_BACK);
-        glEnable(GL_CULL_FACE);
+//        glEnable(GL_CULL_FACE);
         glEnable(GL_TEXTURE_2D);
+        glEnable(GL_TEXTURE_RECTANGLE_ARB);
         glEnable(GL_BLEND);
     }
 
