@@ -1,0 +1,34 @@
+block droppas ?
+
+
+om client joinar, host dc, går inte att hosta
+
+remove blts if completely outisde map ( for bugged bullets )
+
+Skapa inventory system för blocks och turrets mm
+
+Client disconnection handäling
+
+Info ruta där olika meddelanden visas
+
+Visa visuellt när block skadas
+
+Secondary attack on rightclick
+
+Ship engine animation
+
+Skapa chatsystem ( kristoffer? )
+
+Shop:
+    buy multiple items menu vid vanligt klick, köp ett item vid shiftklick
+    ljud vid köp, annat ljud vid misslyckat köp
+    shortcuts, 1-9 för kategorier, nåt annat för items
+    markera categorin som är vald när man exitar och går in i shoppen igen
+
+
+Spectating:
+    if inside shop when dying, remove text and close gui
+    scroll to zoom
+
+
+Optimization (look through the code for unneeded code etc.)

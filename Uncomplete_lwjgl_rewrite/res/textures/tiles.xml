@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:58ee846dbf318475913f1248c61ca4ee:959ff8a5988a6698231ea28b8e0409b8:8c35c81d6c02a4e8a52d04a540c911af$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="tiles.png" width="64" height="32">
+    <sprite n="stone" x="32" y="0" w="32" h="32"/>
+    <sprite n="wall" x="0" y="0" w="32" h="32"/>
+</TextureAtlas>

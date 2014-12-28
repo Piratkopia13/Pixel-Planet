@@ -1,11 +1,19 @@
-## IntelliJ IDEA
+Uncomplete_lwjgl_rewrite/.idea
+Uncomplete_lwjgl_rewrite/Pixel Planet.iml
+Uncomplete_lwjgl_rewrite/Pixel Planet.eml
+Uncomplete_lwjgl_rewrite/out
+Uncomplete_lwjgl_rewrite/src/META-INF
+Uncomplete_lwjgl_rewrite/todo.txt
 
-.idea
-Pixel Planet.iml
-Pixel Planet.eml
-out
-src/META-INF
-todo.txt
+Slick2D_working_version/.idea
+Slick2D_working_version/.settings
+Slick2D_working_version/bin
+Slick2D_working_version/streckguden.iml
+Slick2D_working_version/.classpath
+Slick2D_working_version/.project
+Slick2D_working_version/toodledilo
+Slick2D_working_version/out
+Slick2D_working_version/src/META-INF
 
 
 ## Windows

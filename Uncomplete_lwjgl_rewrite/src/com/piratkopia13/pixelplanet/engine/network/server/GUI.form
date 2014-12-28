@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.piratkopia13.pixelplanet.engine.network.server.GUI">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="600" height="400"/>
+    </constraints>
+    <properties>
+      <doubleBuffered value="true"/>
+      <minimumSize width="600" height="400"/>
+      <preferredSize width="600" height="400"/>
+    </properties>
+    <border type="none">
+      <font/>
+      <title-color color="-16777216"/>
+    </border>
+    <children>
+      <grid id="d6f21" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="5" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.8" weighty="0.0" ipadx="200"/>
+        </constraints>
+        <properties>
+          <alignmentX value="0.8"/>
+          <inheritsPopupMenu value="false"/>
+          <minimumSize width="174" height="100"/>
+          <preferredSize width="174" height="200"/>
+        </properties>
+        <border type="line" title="in- &amp; output">
+          <title-color color="-13421773"/>
+          <color color="-3355444"/>
+        </border>
+        <children>
+          <scrollpane id="f81de">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="true"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="4436d" class="javax.swing.JTextPane" binding="log">
+                <constraints/>
+                <properties>
+                  <alignmentX value="0.5"/>
+                  <autoscrolls value="true"/>
+                  <background color="-1"/>
+                  <dragEnabled value="false"/>
+                  <editable value="false"/>
+                  <focusable value="true"/>
+                  <foreground color="-16777216"/>
+                  <inheritsPopupMenu value="false"/>
+                  <text value=""/>
+                  <verifyInputWhenFocusTarget value="true"/>
+                  <visible value="true"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+          <component id="729f9" class="javax.swing.JTextField" binding="input">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="10"/>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <toolTipText value="Enter ze commands here"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="3f0da" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="0" column="2" row-span="2" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="200"/>
+            <preferred-size width="-1" height="100"/>
+            <maximum-size width="-1" height="130"/>
+          </grid>
+          <gridbag weightx="1.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <alignmentX value="0.2"/>
+          <alignmentY value="0.5"/>
+          <autoscrolls value="false"/>
+          <minimumSize width="99" height="120"/>
+          <preferredSize width="99" height="150"/>
+          <visible value="true"/>
+        </properties>
+        <border type="line" title="Info">
+          <title-color color="-13421773"/>
+          <color color="-3355444"/>
+        </border>
+        <children>
+          <component id="7098e" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value="Maxplayers:"/>
+            </properties>
+          </component>
+          <component id="b4fdb" class="javax.swing.JLabel" binding="maxPlayers">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="f5a83" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value="Tickrate:"/>
+            </properties>
+          </component>
+          <component id="ce4d6" class="javax.swing.JLabel" binding="tickrate">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="aab15" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value="Port:"/>
+            </properties>
+          </component>
+          <component id="ca3f0" class="javax.swing.JLabel" binding="port">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="3d0e8" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value="IP:"/>
+            </properties>
+          </component>
+          <component id="3758c" class="javax.swing.JLabel" binding="ip">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="cecf5" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value="Server name:"/>
+            </properties>
+          </component>
+          <component id="70d37" class="javax.swing.JLabel" binding="serverName">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.5" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <focusable value="true"/>
+              <font size="12" style="0"/>
+              <iconTextGap value="4"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="1dbba" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="2" row-span="3" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="300"/>
+            <preferred-size width="-1" height="300"/>
+            <maximum-size width="-1" height="300"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="1.0"/>
+        </constraints>
+        <properties>
+          <alignmentX value="0.2"/>
+          <alignmentY value="0.5"/>
+          <opaque value="true"/>
+          <preferredSize width="270" height="100"/>
+        </properties>
+        <border type="line" title="Players">
+          <title-color color="-13421773"/>
+          <color color="-3355444"/>
+        </border>
+        <children>
+          <scrollpane id="ec233">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="255c4" class="javax.swing.JList" binding="playerList">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
