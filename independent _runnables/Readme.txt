@@ -1,0 +1,2 @@
+Pixel_Planet.jar contains a test showing of a map-renderer, bulletcollision particles etc.
+Included in the source, but not this jar, is also a server and a client version of the game with working netcode.
