@@ -7,6 +7,7 @@ import org.jdom2.input.SAXBuilder;
 import org.lwjgl.BufferUtils;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -21,7 +22,8 @@ public class GameResourceLoader {
         String[] splat = filename.split("\\.");
         String format = splat[splat.length-1];
         try {
-            return TextureLoader.getTexture(format, new FileInputStream(new File("res/textures/"+filename)));
+//            return TextureLoader.getTexture(format, new FileInputStream(new File("res/textures/"+filename)));
+            return TextureLoader.getTexture(format, ResourceLoader.getResourceAsStream("res/textures/" + filename));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,7 +34,7 @@ public class GameResourceLoader {
         glBindTexture(GL_TEXTURE_RECTANGLE_ARB, texture);
         InputStream in;
         try {
-            in = new FileInputStream("res/textures/"+filename);
+            in = ResourceLoader.getResourceAsStream("res/textures/"+filename);
             PNGDecoder decoder = new PNGDecoder(in);
             ByteBuffer buffer = BufferUtils.createByteBuffer(4 * decoder.getWidth() * decoder.getHeight());
             decoder.decode(buffer, decoder.getWidth() * 4, PNGDecoder.Format.RGBA);
@@ -53,7 +55,7 @@ public class GameResourceLoader {
         BufferedReader shaderReader = null;
 
         try {
-            shaderReader = new BufferedReader(new FileReader("./res/shaders/" + filename));
+            shaderReader = new BufferedReader(new InputStreamReader(ResourceLoader.getResourceAsStream("res/shaders/" + filename)));
             String line;
             while ((line = shaderReader.readLine()) != null){
                 shaderSource.append(line).append("\n");

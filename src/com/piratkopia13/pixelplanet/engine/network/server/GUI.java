@@ -1,6 +1,6 @@
-package com.piratkopia13.pixelplanet.network.server;
+package com.piratkopia13.pixelplanet.engine.network.server;
 
-import com.piratkopia13.pixelplanet.network.GeneralRequest;
+import com.piratkopia13.pixelplanet.engine.network.GeneralRequest;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -54,7 +54,7 @@ public class GUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JTextField input = (JTextField) e.getSource();
-                GameServer.server.sendToAllUDP( new GeneralRequest( input.getText() ) );
+                GameServer.server.sendToAllUDP( new GeneralRequest( "", input.getText() ) );
                 addToLog(LogLevel.INFO, input.getText());
                 input.setText("");
             }
@@ -62,7 +62,7 @@ public class GUI extends JFrame{
     }
 
     public static enum LogLevel{
-        INFO, WARNING, ERROR
+        DEBUG, INFO, WARNING, ERROR
 
     }
 

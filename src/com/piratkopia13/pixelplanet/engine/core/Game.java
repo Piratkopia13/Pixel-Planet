@@ -1,5 +1,7 @@
 package com.piratkopia13.pixelplanet.engine.core;
 
+import com.piratkopia13.pixelplanet.GameVar;
+import com.piratkopia13.pixelplanet.engine.network.GeneralRequest;
 import com.piratkopia13.pixelplanet.engine.rendering.Camera;
 import com.piratkopia13.pixelplanet.engine.rendering.Window;
 import com.piratkopia13.pixelplanet.states.State;
@@ -87,7 +89,14 @@ public class Game {
         Game.fps = fps;
     }
 
+    // Net
     public static void joinServer(String address){
         engine.joinServer(address);
+    }
+    public static void netSendPosition(){
+        engine.getClient().sendUDP( new GeneralRequest(0x01, GameVar.getPlayer().getPosition()) );
+    }
+    public static void netSendRotation(){
+        engine.getClient().sendUDP(new GeneralRequest(0x02, GameVar.getPlayer().getRotation()));
     }
 }

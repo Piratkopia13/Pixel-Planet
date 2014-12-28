@@ -12,8 +12,7 @@ import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Color;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -28,11 +27,15 @@ public class Play implements GameState {
     private List<Bullet> bullets;
     private float movementSpeed = 10f;
 
+    public static Map<Integer, Player> otherPlayers;
+    private static List<Integer> joiningPlayers = new ArrayList<>();
+
     @Override
     public void init() {
         camera = new Camera(0, 0);
 //        camera.setScale(0.5f);
         Game.setGameCamera(camera);
+        otherPlayers = new HashMap<>();
 
         player = new Player();
         player.setShipIcon("axiom.png");
@@ -53,6 +56,14 @@ public class Play implements GameState {
 
     @Override
     public void update(){
+
+        for (int pid : joiningPlayers){
+            System.out.println("added player");
+            otherPlayers.put(pid, new Player());
+        }
+        joiningPlayers.clear();
+
+        System.out.println(otherPlayers.size());
 
         GameVar.setMap(map);
 
@@ -102,6 +113,9 @@ public class Play implements GameState {
 //        glEnd();
 //        BasicShader.resetColor();
 
+        // Render all enemies
+        for (Player p : otherPlayers.values())
+            p.draw();
 
         player.draw();
         ParticleEmitter.updateAndRenderSmallExplosions();
@@ -117,6 +131,10 @@ public class Play implements GameState {
     public void cleanUp(){
         shader.dispose();
         map.dispose();
+    }
+
+    public static void spawnPlayer(int id){
+        joiningPlayers.add(id);
     }
 
     @Override

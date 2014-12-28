@@ -39,6 +39,10 @@ public class Player {
         this.rotation = 0f;
         this.movementSpeed = 1;
 
+        setShipIcon("axiom.png");
+        setPosition(0, 0);
+        setSpeed(movementSpeed);
+
 //        updateCollisionPoints();
 
         this.velocity = new Vector2f(0, 0);
@@ -83,6 +87,8 @@ public class Player {
 
         if (camera != null)
             camera.setPosition(centerPos.toCamera());
+
+        Game.netSendPosition();
     }
     public void moveTo(Vector2f pos){
         Vector2f d = pos.add(position.inverted());

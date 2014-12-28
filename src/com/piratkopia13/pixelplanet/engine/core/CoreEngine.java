@@ -1,8 +1,9 @@
 package com.piratkopia13.pixelplanet.engine.core;
 
 import com.esotericsoftware.kryonet.Client;
-import com.piratkopia13.pixelplanet.network.RegisterClasses;
-import com.piratkopia13.pixelplanet.network.client.NetworkListener;
+import com.piratkopia13.pixelplanet.GameVar;
+import com.piratkopia13.pixelplanet.engine.network.RegisterClasses;
+import com.piratkopia13.pixelplanet.engine.network.client.NetworkListener;
 import com.piratkopia13.pixelplanet.engine.rendering.RenderUtil;
 import com.piratkopia13.pixelplanet.engine.rendering.Window;
 import com.piratkopia13.pixelplanet.states.*;
@@ -187,5 +188,9 @@ public class CoreEngine {
             e.printStackTrace();
         }
         client.addListener(new NetworkListener());
+    }
+
+    public Client getClient() {
+        return client;
     }
 }

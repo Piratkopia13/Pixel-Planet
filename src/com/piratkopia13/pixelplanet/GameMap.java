@@ -6,10 +6,12 @@ import com.piratkopia13.pixelplanet.engine.physics.shape.Shape;
 import com.piratkopia13.pixelplanet.engine.rendering.Mesh;
 import com.piratkopia13.pixelplanet.shaders.BasicShader;
 import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.util.ResourceLoader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -116,7 +118,7 @@ public class GameMap {
         char rawType;
         int x = 0, y = 0;
         try {
-            br = new BufferedReader(new FileReader("res/maps/"+filename));
+            br = new BufferedReader(new InputStreamReader(ResourceLoader.getResourceAsStream("res/maps/" + filename)));
             String line = br.readLine();
 
             while (line != null) {

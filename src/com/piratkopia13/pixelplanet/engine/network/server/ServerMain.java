@@ -1,4 +1,4 @@
-package com.piratkopia13.pixelplanet.network.server;
+package com.piratkopia13.pixelplanet.engine.network.server;
 
 import javax.swing.*;
 

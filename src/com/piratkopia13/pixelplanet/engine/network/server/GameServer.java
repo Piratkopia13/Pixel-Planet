@@ -1,7 +1,7 @@
-package com.piratkopia13.pixelplanet.network.server;
+package com.piratkopia13.pixelplanet.engine.network.server;
 
 import com.esotericsoftware.kryonet.Server;
-import com.piratkopia13.pixelplanet.network.RegisterClasses;
+import com.piratkopia13.pixelplanet.engine.network.RegisterClasses;
 
 import java.io.IOException;
 
@@ -21,7 +21,7 @@ public class GameServer {
         server.start();
         try {
             server.bind(12345, 12345);
-            server.addListener(new ServerListener());
+            server.addListener(new ServerListener(server));
 
             GUI.addToLog(GUI.LogLevel.INFO, "Server is online");
 
